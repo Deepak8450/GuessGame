@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<div id="regist" class="reg">
+   <h2>User Registration</h2>
+  <input id="user" type="text" placeholder="Enter your name">
+  <input id="sbmt"onclick="hit()" type="submit" placeholder="Submit">
+</div>
+
+<div id="second_card" class="reg">
+<h1>Your WellCome <h2 id="name"></h2> In the Game :</h1>
+<button id="start" onclick="start()">Start Game</button>
+</div>
+
+<div id="card_3" class="container">
+<h1 id="number-display"></h1>
+<input type="number" placeholder="Enter Above Number:" id="user-number">
+<button id="enter" onclick="checkGuess()">Enter</button>
+ <div id="result-message"></div>
+</div>
+
+<div id="scorecard" class="score-container">
+  <p id="score">Score: <span id="score-value"></span></p>
+
+</div>
+<style type="text/css">
+body{
+background:linear-gradient(skyblue,white);
+margin:0;
+padding:0;
+width:100%;
+height:1900px;
+}
+.reg{
+width:500px;
+height:320px;
+background:#fff;
+position:absolute;
+top:30%;
+left:25%;
+display:flex;
+align-items:center;
+flex-direction:column;
+justify-content:center;
+box-shadow:4px 3px 3px gray;
+border-radius:20px;
+}
+input[type="text"]{
+outline:none;
+width:270px;
+height:32px;
+border-top:none;border-left:none;border-right:none;
+}
+input[type="submit"]{
+width:130px;
+height:34px;
+border:none;
+margin-top:40px;
+background:skyblue;
+color:white;font-size:23px;font-weight:700;
+}
+#second_card{
+transform:translateX(-900px);
+}
+#start{
+width:170px;
+height:40px;
+border:none;
+margin-top:40px;
+background:#2CD5C0;color:#fff;font-weight:700;font-size:24px;
+}
+.container{
+width:700px;
+height:500px;
+background:white;
+display:flex;
+align-items:center;
+flex-direction:column;
+justify-content:center;
+position:absolute;
+top:30%;
+left:25%;
+transform:translateY(-1200px);
+}
+#user-number{
+outline:none;
+width:270px;
+height:32px;
+border-top:none;border-left:none;border-right:none;
+}
+#enter{
+width:170px;
+height:40px;
+border:none;
+margin-top:40px;
+background:#2CD5C0;color:#fff;font-weight:700;font-size:24px;
+}
+.score-container{
+width:300px;
+height:150px;
+background:white;
+position:absolute;
+top:0;
+left:35%;
+flex-direction:column;
+justify-content:center;
+opacity:1;
+}
+#number-display{
+animation:rotate 2s linear infinite;
+}
+@keyframes rotate{
+0%{transform:scale(2);}
+30%{transform:rotateX(30deg) rotate(360deg);}
+60%{transform:rotateX(45deg) rotate(360deg);}
+80%{transform:rotateX(90deg) rotate(90deg);}
+90%{transform:rotateX(90deg) rotate(90deg);}
+100%{transform:rotateX(90deg) rotate(90deg);}
+}
+#score-value{
+font-size:25px;
+font-weight:700;
+color:red;
+}
+</style>
+<script>
+function hit(){
+let name = document.getElementById("user").value;
+document.getElementById("name").innerHTML=name;
+let anim= document.getElementById("regist");
+let anim2 = document.getElementById("second_card");
+anim.style="transform:translateX(-800px);transition:transform .5s linear;";
+anim2.style="transform:translateX(10px);transition:transform .2s linear;transition-delay: 0.7s;";
+}
+function start(){
+let anim2 = document.getElementById("second_card");
+anim2.style="transform:translateX(-800px);transition:transform .2s linear;";
+let anim3=document.getElementById("card_3");
+anim3.style="transform:translateY(80px);transition:transform .2s linear;transition-delay: 0.8s;";
+}
+
+function generateNumber() {
+    const randomNumber = Math.floor(Math.random() * 10);
+    document.getElementById('number-display').textContent = `Generated Number: ${randomNumber}`;
+    return randomNumber;
+}
+
+let score = 0;
+let chance = 10;
+
+function checkGuess() {
+chance--;
+if(chance === 0){
+    alert("game over")
+ }
+    const generatedNumber = generateNumber();
+    const userGuess = parseInt(document.getElementById("user-number").value);
+
+    if (generatedNumber === userGuess) {
+        score++;
+    }
+
+    document.getElementById('score-value').innerHTML = score;
+}
+</script>
+</body>
+</html>
